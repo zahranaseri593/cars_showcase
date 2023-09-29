@@ -3,7 +3,15 @@ import { fuels, yearsOfProduction } from '@/constants';
 import { fetchCars } from '@/utils'
 import Image from 'next/image'
 
-export default async function Home({searchParams}) {
+interface SearchParams {
+  manufacturer?: string;
+  year?: number;
+  fuel?:string;
+  limit?: number;
+  model?: string;
+}
+
+export default async function Home({searchParams} : { searchParams: SearchParams }) {
   
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || '',
